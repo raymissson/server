@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Pessoa;
 class PessoaController extends Controller
@@ -21,44 +21,39 @@ class PessoaController extends Controller
         return view('pessoas.create');
     }
 
-    public function show(Pessoa $pessoa){
-        return view('pessoas.index', compact('pessoa'));
-    }
-
     public function store(Request $request){
-        $request->validate([
-            'nome' => 'required',
-            'email' => 'required',
-            'cpf' => 'required',
-            'nasc' => 'required',
-            'tel' => 'required',
-            'cep' => 'required',
-            'endereco' => 'required',
-            'bairro' => 'required',
-            'cidade' => 'required',
-            'uf' => 'required',
+        $pessoa = new Pessoa([
+            'nome' => $request->get('nome'),
+            'email' => $request->get('email'),
+            'cpf' => $request->get('cpf'),
+            'nascimento' => $request->get('nascimento'),
+            'telefone' => $request->get('telefone'),
+            'cep' => $request->get('cep'),
+            'endereco' => $request->get('endereco'),
+            'bairro' => $request->get('bairro'),
+            'cidade' => $request->get('cidade'),
+            'uf' => $request->get('uf')
         ]);
-        Pessoa::create($request->all());
-        return redirect()->route('pessoas.index')->with('sucess','Cliente cadastrado com sucesso');
-
+        $pessoa->save();
+        return redirect('/pessoas')->with('sucess','Cliente cadastrado com sucesso');
     }
 
     public function update(Request $request, $id){
-        $validar = $request->validate([
+        $validateData = $request->validate([
             'id' => 'required',
             'nome' => 'required',
-            'email' => 'required',
             'cpf' => 'required',
-            'nasc' => 'required',
-            'tel' => 'required',
+            'nascimento' => 'required',
+            'email' => 'required',
+            'telefone' => 'required',
             'cep' => 'required',
             'endereco' => 'required',
             'bairro' => 'required',
             'cidade' => 'required',
             'uf' => 'required',
         ]);
-        Pessoa::whereId($id)->update($validar);
-        return redirect('pessoas.index')->with('success', 'Cliente atualziado com sucesso');
+        Pessoa::whereId($id)->update($validateData);
+        return redirect('/pessoas')->with('sucess', 'Cliente atualziado com sucesso');
     }
 
     public function destroy($id){

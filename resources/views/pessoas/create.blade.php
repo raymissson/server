@@ -4,10 +4,10 @@
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
-            <h2>Cadastrar Novo Cliente</h2>
+            <h3>Cadastrar Novo Cliente</h3>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('pessoas.index') }}"> Voltar</a>
+            <a class="btn btn-primary" href="{{ route('pessoas.index') }}">Voltar</a>
         </div>
     </div>
 </div>
@@ -24,10 +24,11 @@
 @endif
    
 <form action="{{ route('pessoas.store') }}" method="POST">
-     @csrf
+
      <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
+            {{ csrf_field() }}
                 <strong>Nome:</strong>
                 <input type="text" name="nome" class="form-control">
             </div>
@@ -41,7 +42,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Nascimento:</strong>
-                <input type="date" name="nasc" class="form-control">
+                <input type="date" name="nascimento" class="form-control">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -53,37 +54,37 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Telefone:</strong>
-                <input type="text" name="tel" class="form-control">
+                <input type="text" name="telefone" class="form-control">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>CEP:</strong>
-                <input type="text" name="cep" class="form-control">
+                <input type="text" name="cep" class="form-control" id="cep">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Endereço:</strong>
-                <input type="text" name="endereco" class="form-control">
+                <input type="text" name="endereco" class="form-control" id="endereco">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Bairro:</strong>
-                <input type="text" name="bairro" class="form-control">
+                <input type="text" name="bairro" class="form-control" id="bairro">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Cidade:</strong>
-                <input type="text" name="cidade" class="form-control">
+                <input type="text" name="cidade" class="form-control" id="cidade">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>UF:</strong>
-                <input type="text" name="uf" class="form-control">
+                <input type="text" name="uf" class="form-control" id="uf">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">

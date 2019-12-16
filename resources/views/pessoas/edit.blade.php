@@ -24,21 +24,32 @@
     @endif
   
     <form action="{{ route('pessoas.update',$pessoa->id) }}" method="POST">
-        @csrf
-        @method('PUT')
-   
+    {{ csrf_field() }}
+    {!! method_field('PUT') !!}
          <div class="row">
-            <input name="id" value="{{ $pessoa->id }}">
+            <input name="id" value="{{ $pessoa->id }}" hidden>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Name</strong>
-                    <input type="text" name="name" value="{{ $pessoa->nome }}">
+                    <input type="text" name="nome" value="{{ $pessoa->nome }}" class="form-control">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>CPF:</strong>
                     <input type="text" name="cpf" value="{{ $pessoa->cpf }}" class="form-control">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Email</strong>
+                    <input type="text" name="email" value="{{ $pessoa->email }}" class="form-control">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Telefone</strong>
+                    <input type="text" name="telefone" value="{{ $pessoa->telefone }}" class="form-control">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -56,7 +67,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Endereço:</strong>
-                    <input type="text" name="end" value="{{ $pessoa->endereco }}" class="form-control">
+                    <input type="text" name="endereco" value="{{ $pessoa->endereco }}" class="form-control">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">

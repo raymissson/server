@@ -12,10 +12,10 @@
         </div>
     </div>
    
-    @if ($message = Session::get('success'))
-        <div class="alert alert-success">
-            <p>{{ $message }}</p>
-        </div>
+    @if(session()->get('success'))
+    <div class="alert alert-success">
+      {{ session()->get('success') }}
+    </div><br />
     @endif
    
     <table class="table table-bordered">
@@ -23,7 +23,7 @@
             <th>Nome</th>
             <th>CPF</th>
             <th>Telefone</th>
-            <th width="280px">Action</th>
+            <th>Ações</th>
         </tr>
         @foreach ($pessoas as $pessoa)
         <tr>
@@ -32,11 +32,9 @@
             <td>{{ $pessoa->telefone }}</td>
             <td>
                 <a href="{{ route('pessoas.edit',$pessoa->id)}}" class="btn btn-primary">Editar</a>
-            </td>
-            <td>
                 <form action="{{route('pessoas.destroy', $pessoa->id)}}" method="POST">
-                    @csrf
-                    @method('DELETE')
+                    {{ csrf_field() }}
+                    {!! method_field('delete') !!}
                     <button type="submit" class="btn btn-danger">Delete</button>
                 </form>
             </td>
